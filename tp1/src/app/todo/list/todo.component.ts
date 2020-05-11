@@ -14,7 +14,7 @@ export class TodoComponent implements OnInit {
   todoForm;
 
   constructor(
-    private taskService$: TodoService,
+    private taskService: TodoService,
     public formBuilder: FormBuilder,
   ) {
     this.todoForm = this.formBuilder.group({
@@ -27,15 +27,7 @@ export class TodoComponent implements OnInit {
   }
 
   validationForm(v: any) {
-    let lastTask = this.taskService$.getAll().slice(-1)[0];
-    let newId = (lastTask != null) ? lastTask.id + 1 : 0;
-    let newTask: Task = {
-      id: newId,
-      title: v.todoTitle,
-      description: v.todoDescription,
-      status: TaskStatus.todo
-    };
-    this.taskService$.add(newTask);
+    this.taskService.add(v.todoTitle, v.todoDescription);
   }
 
 }
