@@ -1,4 +1,10 @@
 <h1>TodoList Component</h1>
+<button (click)="displayAddForm = !displayAddForm">Ajouter à la liste</button>
+
+<app-add
+    *ngIf="displayAddForm"
+    (sendFormValue)="addToTodoList($event)"
+></app-add>
 
 <app-tasklist
     [tasksList]="taskService.all">

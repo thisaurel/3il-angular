@@ -1,16 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TodoService } from './services/todo.service';
-import { TodoComponent } from './list/todo.component';
 import { TodoRoutingModule } from './todo-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { EditComponent } from './edit/edit.component';
 import { TasklistComponent } from './tasklist/tasklist.component';
 import { TaskelementComponent } from './taskelement/taskelement.component';
 import { TodolistComponent } from './todolist/todolist.component';
+import { AddComponent } from './add/add.component';
 
 @NgModule({
-  declarations: [TodoComponent, EditComponent, TasklistComponent, TaskelementComponent, TodolistComponent],
+  declarations: [TasklistComponent, TaskelementComponent, TodolistComponent, AddComponent],
   imports: [
     CommonModule,
     TodoRoutingModule,
