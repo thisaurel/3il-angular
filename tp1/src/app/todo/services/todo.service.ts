@@ -9,7 +9,10 @@ export class TodoService {
 
   private tasks: Task[] = [];
 
-  constructor() { }
+  constructor() {
+    this.add('Hello 0', 'Hello description 0');
+    this.add('Hello 1', 'Hello description 1');
+  }
 
   public get all(): Task[] {
     return this.tasks;

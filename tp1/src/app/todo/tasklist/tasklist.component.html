@@ -1,1 +1,6 @@
-<p>tasklist works!</p>
+<h2>Tasks List</h2>
+
+<app-taskelement
+    *ngFor="let task of tasksList"
+    [task]="task"
+></app-taskelement>

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Task } from '../interfaces/task.interface';
 
 @Component({
   selector: 'app-taskelement',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./taskelement.component.sass']
 })
 export class TaskelementComponent implements OnInit {
+
+  @Input() task: Task;
 
   constructor() { }
 
