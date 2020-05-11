@@ -1,0 +1,6 @@
+.task {
+    background-color: red;
+    &.active {
+        background-color: green;
+    }
+}
