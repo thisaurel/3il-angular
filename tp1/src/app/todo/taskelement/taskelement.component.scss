@@ -1,6 +1,10 @@
 .task {
-    background-color: red;
+    padding: 15px;
+    background-color: #ff9292;
     &.active {
-        background-color: green;
+        background-color: #afffaf;
+    }
+    button {
+        margin-right: 15px;
     }
 }

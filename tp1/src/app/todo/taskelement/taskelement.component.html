@@ -1,9 +1,8 @@
-<hr />
 <div class="task" [ngClass]="{'active': task.status == 'DONE'}">
     <h3>{{ task.title }} - {{ task.status }}</h3>
     <p>{{ task.description }}</p>
     <br />
-    <button (click)="deleteTodo(task.id);">Supprimer</button>
-    <button (click)="switchTodoState(task.id);">Changer état</button>
+    <button type="button" class="btn btn-danger" (click)="deleteTodo(task.id);">Supprimer</button>
+    <button type="button" class="btn btn-info" (click)="switchTodoState(task.id);">Changer état</button>
 </div>
 <hr />

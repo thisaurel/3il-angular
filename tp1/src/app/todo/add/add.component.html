@@ -1,11 +1,12 @@
 <form [formGroup]="todoForm" (ngSubmit)="validationForm(todoForm.value)">
-
-    <label for="todoTitle"></label>
-    <input type="text" name="todoTitle" id="todoTitle" placeholder="todoTitle" formControlName="todoTitle">
-
-    <label for="todoDescription"></label>
-    <input type="text" name="todoDescription" id="todoDescription" placeholder="todoDescription" formControlName="todoDescription" cols="30" rows="10">
-
-    <button type="submit">Ajouter todo</button>
-</form>
-<hr>
+    <div class="form-group">
+      <label for="todoTitle">Nom de la TODO</label>
+      <input type="text" name="todoTitle" id="todoTitle" placeholder="Nom de la TODO" formControlName="todoTitle" class="form-control" id="todoTitle">
+    </div>
+    <div class="form-group">
+        <label for="todoDescription">Description de la TODO</label>
+        <textarea class="form-control" name="todoDescription" id="todoDescription" placeholder="Description de la TODO" formControlName="todoDescription" rows="3"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Ajouter todo</button>
+  </form>
+  <hr>

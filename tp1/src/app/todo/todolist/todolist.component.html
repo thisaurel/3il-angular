@@ -1,6 +1,6 @@
 <h1>TodoList Component</h1>
-<button (click)="displayAddForm = !displayAddForm">Ajouter à la liste</button>
-
+<button type="button" class="btn btn-primary" (click)="displayAddForm = !displayAddForm">{{ displayAddForm ? 'Masquer le formulaire' : 'Ajouter une TODO' }}</button>
+<hr>
 <app-add
     *ngIf="displayAddForm"
     (sendFormValue)="addToTodoList($event)"
