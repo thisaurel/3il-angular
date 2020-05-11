@@ -1,7 +1,4 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { TodoService } from '../services/todo.service';
-import { Task } from '../interfaces/task.interface';
-import { TaskStatus } from '../enums/task-status.enum';
 import { FormBuilder } from '@angular/forms';
 
 
