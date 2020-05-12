@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthComponent } from '../auth/auth.component';
 import { UsersListComponent } from '../users-list/users-list.component';
 import { HomeComponent } from '../home/home.component';
+import { AuthService } from '../../services/auth/auth.service';
 
 @NgModule({
 	imports: [
@@ -25,6 +26,7 @@ import { HomeComponent } from '../home/home.component';
 		HomeComponent,
     ],
 	providers: [
+		AuthService,
 	]
 })
 export class LayoutModule { }
