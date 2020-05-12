@@ -7,3 +7,10 @@
 .title-selector {
     cursor: pointer;
 }
+.right {
+    position: absolute;
+    right: 20px;
+    .username {
+        font-size: 16px;
+    }
+}

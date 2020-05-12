@@ -7,7 +7,7 @@ import { User } from 'src/app/interfaces/user';
 })
 export class AuthService {
 
-  protected connectedUser: User;
+  private connectedUser: User;
 
   constructor() {
     console.log(data.users);
@@ -17,10 +17,18 @@ export class AuthService {
     return data.users;
   }
 
+  public get allWithoutMe(): User[] {
+    return data.users.filter((u) => u != this.connectedUser);
+  }
+
+  public get userConnected(): User {
+    return this.connectedUser;
+  }
+
   public auth(username: string, password: string): boolean {
     const user = data.users.filter((u) => u.username === username && u.password === password);
     if (user.length > 0) {
-      this.connectedUser = user[1];
+      this.connectedUser = user[0];
       return true;
     } else {
       return false;

@@ -5,6 +5,9 @@
       <a mat-button [routerLink]="'/auth'"> Authentification </a>
       <a mat-button [routerLink]="'/user-list'"> Liste des utilisateurs </a>
     </div>
+    <div class="right">
+      <span class="username">{{ (user != null) ? user.username : 'Non connecté)' }}</span>
+    </div>
   </mat-toolbar-row>
 </mat-toolbar>
 <div class="container">

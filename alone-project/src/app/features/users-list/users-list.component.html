@@ -1,6 +1,6 @@
 <h2>Liste des utilisateurs</h2>
 <mat-list>
-    <mat-list-item *ngFor="let user of authService.all">
+    <mat-list-item *ngFor="let user of authService.allWithoutMe">
         <img [src]="user.picture" alt="" class="profil-picture">
         <div class="user-info">
             <div mat-line>{{user.firstName}} {{user.lastName}}</div>
