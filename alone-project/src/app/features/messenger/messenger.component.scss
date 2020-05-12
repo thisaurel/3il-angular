@@ -50,12 +50,26 @@
   width: 100%;
 }
 
-.chatbox {
+.chatbox{
   height: 60vh;
   overflow-y: scroll;
   margin-bottom: 30px;
 }
 
+.no-messages {
+  height: 60vh;
+  overflow-y: scroll;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: .3;
+}
+
 .send-message {
   width: 100%;
+}
+
+.text-align-end {
+  text-align: end;
 }

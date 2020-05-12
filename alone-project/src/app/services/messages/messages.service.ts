@@ -21,8 +21,11 @@ export class MessagesService {
   }
 
   public getMessagesForUser(id: number): Message[] {
-    if (this.user == null) this.authService.router.navigate(['/']);
-    return data.messages.filter((m) => m.emitterId === id && m.receiverId === this.user.id);
+    if (this.authService.userConnected == null) this.authService.router.navigate(['/']);
+    return data.messages.filter((m) =>
+    (m.emitterId === this.authService.userConnected.id || m.receiverId === this.authService.userConnected.id) &&
+    (m.emitterId === id || m.receiverId === id)
+    );
   }
 
 }

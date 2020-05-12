@@ -17,6 +17,7 @@ export class MessengerComponent implements OnInit, AfterViewChecked {
   @ViewChild('chatBox', { static: true }) private chatBox: ElementRef;
   public messagesList: Message[];
   public user: User;
+  public whoAmI: User;
   public id: number;
 
   constructor(
@@ -30,10 +31,12 @@ export class MessengerComponent implements OnInit, AfterViewChecked {
       this.messagesList = this.messageService.getMessagesForUser(this.id);
       this.user = this.authService.getUserById(this.id);
     });
+    this.whoAmI = this.authService.userConnected;
   }
 
   ngOnInit() {
     console.log(this.messagesList);
+    console.log(this.whoAmI);
     this.scrollToBottom();
   }
 
@@ -47,7 +50,7 @@ export class MessengerComponent implements OnInit, AfterViewChecked {
 
   scrollToBottom(): void {
     try {
-        this.chatBox.nativeElement.scrollTop = this.chatBox.nativeElement.scrollHeight;
+      this.chatBox.nativeElement.scrollTop = this.chatBox.nativeElement.scrollHeight;
     } catch(err) {
       console.log(err);
     }
