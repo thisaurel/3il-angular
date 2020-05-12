@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
-
-export interface Section {
-  name: string;
-  updated: Date;
-}
+import { User } from 'src/app/interfaces/user';
 
 @Component({
   selector: 'app-users-list',
@@ -13,36 +9,18 @@ export interface Section {
 })
 export class UsersListComponent implements OnInit {
 
+  public user: User;
+
   constructor(
     private authService: AuthService,
-  ) { }
+  ) {
+    this.authService.onUserConnected.subscribe((user: User) => {
+      this.user = user;
+      console.log(this.user);
+    });
+  }
 
   ngOnInit() {
   }
-
-  folders: Section[] = [
-    {
-      name: 'Photos',
-      updated: new Date('1/1/16'),
-    },
-    {
-      name: 'Recipes',
-      updated: new Date('1/17/16'),
-    },
-    {
-      name: 'Work',
-      updated: new Date('1/28/16'),
-    }
-  ];
-  notes: Section[] = [
-    {
-      name: 'Vacation Itinerary',
-      updated: new Date('2/20/16'),
-    },
-    {
-      name: 'Kitchen Remodel',
-      updated: new Date('1/18/16'),
-    }
-  ];
 
 }

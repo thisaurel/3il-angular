@@ -2,11 +2,12 @@
     <h1 class="title-selector" [routerLink]="'/'">Alone project</h1>
     <span class="menu-spacer"></span>
     <div>
-      <a mat-button [routerLink]="'/auth'"> Authentification </a>
-      <a mat-button [routerLink]="'/user-list'"> Liste des utilisateurs </a>
+      <a mat-button [routerLink]="'/auth'" *ngIf="user == null"> Authentification </a>
+      <a mat-button [routerLink]="'/user-list'" *ngIf="user != null"> Liste des utilisateurs </a>
     </div>
-    <div class="right">
-      <span class="username">{{ (user != null) ? user.username : 'Non connecté)' }}</span>
+    <div class="right" *ngIf="user != null">
+      <span class="username">{{ (user != null) ? user.username : 'Non connecté(e)' }}</span>
+      <mat-icon class="logout" (click)="logout()">exit_to_app</mat-icon>
     </div>
   </mat-toolbar-row>
 </mat-toolbar>

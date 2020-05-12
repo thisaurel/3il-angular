@@ -9,6 +9,7 @@ import { AuthComponent } from '../auth/auth.component';
 import { UsersListComponent } from '../users-list/users-list.component';
 import { HomeComponent } from '../home/home.component';
 import { AuthService } from '../../services/auth/auth.service';
+import { MessengerComponent } from '../messenger/messenger.component';
 
 @NgModule({
 	imports: [
@@ -24,6 +25,7 @@ import { AuthService } from '../../services/auth/auth.service';
         AuthComponent,
         UsersListComponent,
 		HomeComponent,
+		MessengerComponent,
     ],
 	providers: [
 		AuthService,

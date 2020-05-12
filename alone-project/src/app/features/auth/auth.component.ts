@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroupDirective, FormGroup, NgForm, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -22,6 +23,7 @@ export class AuthComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
+    public router: Router
   ) { }
 
   ngOnInit() {
@@ -34,7 +36,7 @@ export class AuthComponent implements OnInit {
       if (username !== '' && password !== '') {
         if (this.authService.auth(username, password)) {
           this.formError = '';
-          alert('Connecté !');
+          this.authService.router.navigate(['/']);
         } else {
           this.formError = 'Nom d\'utilisateur ou mot de passe incorrect';
         }

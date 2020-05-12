@@ -5,6 +5,7 @@ import { LayoutComponent } from './layout.component';
 import { AuthComponent } from '../auth/auth.component';
 import { UsersListComponent } from '../users-list/users-list.component';
 import { HomeComponent } from '../home/home.component';
+import { MessengerComponent } from '../messenger/messenger.component';
 
 const routes: Routes = [
 	{
@@ -14,6 +15,7 @@ const routes: Routes = [
 			{ path: '', component: HomeComponent },
 			{ path: 'auth', component: AuthComponent },
 			{ path: 'user-list', component: UsersListComponent },
+			{ path: 'messenger/:id', component: MessengerComponent },
 		]
 	},
 ];
