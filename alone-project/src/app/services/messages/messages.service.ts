@@ -20,12 +20,18 @@ export class MessagesService {
 		});
   }
 
+  public getLastMessagePerUser(id: number): Message{
+    const msg = data.messages.filter((m) =>
+      (m.emitterId === this.authService.userConnected.id || m.receiverId === this.authService.userConnected.id) &&
+      (m.emitterId === id || m.receiverId === id));
+    return msg[msg.length - 1];
+  }
+
   public getMessagesForUser(id: number): Message[] {
     if (this.authService.userConnected == null) this.authService.router.navigate(['/']);
     return data.messages.filter((m) =>
-    (m.emitterId === this.authService.userConnected.id || m.receiverId === this.authService.userConnected.id) &&
-    (m.emitterId === id || m.receiverId === id)
-    );
+      (m.emitterId === this.authService.userConnected.id || m.receiverId === this.authService.userConnected.id) &&
+      (m.emitterId === id || m.receiverId === id));
   }
 
 }

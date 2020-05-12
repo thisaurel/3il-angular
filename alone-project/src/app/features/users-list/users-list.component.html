@@ -4,7 +4,10 @@
         <img [src]="user.picture" alt="" class="profil-picture">
         <div class="user-info">
             <div mat-line>{{user.firstName}} {{user.lastName}}</div>
-            <div mat-line> {{user.description}} </div>
+            <div mat-line> 
+                {{ messageService.getLastMessagePerUser(user.id) != null ? messageService.getLastMessagePerUser(user.id).content : 'Aucun message' }}
+                {{ messageService.getLastMessagePerUser(user.id) != null ? ' envoyé à ' + messageService.getLastMessagePerUser(user.id).datetime : '' }}
+            </div>
         </div>
     </mat-list-item>
 </mat-list>
