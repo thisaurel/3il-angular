@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -11,7 +11,7 @@ export class AddComponent implements OnInit {
 
 	@Output() sendFormValue: EventEmitter<string[]> = new EventEmitter<string[]>();
 
-  todoForm;
+  todoForm: FormGroup;
 
   constructor(
     public formBuilder: FormBuilder,
