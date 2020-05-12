@@ -2,6 +2,7 @@ import { Injectable, EventEmitter } from '@angular/core';
 import * as data from '../../data/data.json';
 import { User } from 'src/app/interfaces/user';
 import { Router } from '@angular/router';
+import { Message } from 'src/app/interfaces/message';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,11 @@ export class AuthService {
     return data.users;
   }
 
+  public getUserById(id: number): User {
+    const user = data.users.filter((u) => u.id === id);
+    if (user) return user[0];
+  }
+
   public get allWithoutMe(): User[] {
     return data.users.filter((u) => u != this.connectedUser);
   }
@@ -29,7 +35,7 @@ export class AuthService {
     return this.connectedUser;
   }
 
-  public getMessagesForUser(id: number) {
+  public getMessagesForUser(id: number): Message[] {
     if (this.connectedUser == null) this.router.navigate(['/']);
     return data.messages.filter((m) => m.emitterId === id && m.receiverId === this.connectedUser.id);
   }
