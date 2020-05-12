@@ -7,9 +7,10 @@ import { TasklistComponent } from './components/tasklist/tasklist.component';
 import { TaskelementComponent } from './components/taskelement/taskelement.component';
 import { TodolistComponent } from './components/todolist/todolist.component';
 import { AddComponent } from './components/add/add.component';
+import { ViewComponent } from './components/view/view.component';
 
 @NgModule({
-  declarations: [TasklistComponent, TaskelementComponent, TodolistComponent, AddComponent],
+  declarations: [TasklistComponent, TaskelementComponent, TodolistComponent, AddComponent, ViewComponent],
   imports: [
     CommonModule,
     TodoRoutingModule,
