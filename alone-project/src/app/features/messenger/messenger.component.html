@@ -1,1 +1,7 @@
-<p>messenger works!</p>
+<h2>Conversation avec {{user.username}}</h2>
+
+<div class="container" *ngFor="let message of messagesList" [ngClass]="isMessageFromMe(message) ? 'darker' : ''">
+    <img [src]="user.picture"  alt="Avatar" style="width:100%;">
+    <p>{{ message.content }}</p>
+    <span class="time-right">{{ message.datetime | date: 'dd/MM/yyyy à hh:mm' }}</span>
+</div>

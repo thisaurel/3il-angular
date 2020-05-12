@@ -14,19 +14,27 @@ import { Message } from 'src/app/interfaces/message';
 export class MessengerComponent implements OnInit {
 
   public messagesList: Message[];
+  public user: User;
+  public id: number;
 
   constructor(
     private authService: AuthService,
-    private route: ActivatedRoute,
+    route: ActivatedRoute,
   ) {
     const id: Observable<string> = route.params.pipe(map(p => p.id));
     id.subscribe((routeId) => {
-      this.messagesList = this.authService.getMessagesForUser(+routeId);
+      this.id = +routeId;
+      this.messagesList = this.authService.getMessagesForUser(this.id);
+      this.user = this.authService.getUserById(this.id);
     });
   }
 
   ngOnInit() {
     console.log(this.messagesList);
+  }
+
+  public isMessageFromMe(message: Message): boolean {
+    return (this.authService.userConnected.id === message.emitterId) ? true : false;
   }
 
 }
