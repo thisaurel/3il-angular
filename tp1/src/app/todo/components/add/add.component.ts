@@ -9,7 +9,7 @@ import { FormBuilder } from '@angular/forms';
 })
 export class AddComponent implements OnInit {
 
-	@Output() sendFormValue: EventEmitter<any> = new EventEmitter<any>();
+	@Output() sendFormValue: EventEmitter<string[]> = new EventEmitter<string[]>();
 
   todoForm;
 
@@ -25,6 +25,7 @@ export class AddComponent implements OnInit {
   ngOnInit() { }
 
   validationForm(v: any) {
+    this.todoForm.reset();
     this.sendFormValue.emit([v.todoTitle, v.todoDescription]);
   }
 
