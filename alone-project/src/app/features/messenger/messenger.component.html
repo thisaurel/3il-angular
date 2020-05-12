@@ -1,7 +1,7 @@
 <h2>Conversation avec {{user.username}}</h2>
 
-<div class="chatbox" #chatBox *ngIf="messagesList.length > 0">
-    <div class="container" *ngFor="let message of messagesList" [ngClass]="">
+<div class="chatbox" #chatBox [style.display]="messagesList.length > 0 ? 'block' : 'none'">
+    <div class="container" *ngFor="let message of messagesList">
         <img [src]="isMessageFromMe(message) ?
         this.authService.userConnected.picture : user.picture"
         alt="Avatar" style="width:100%;" [ngClass]="isMessageFromMe(message) ? 'right' : ''">
