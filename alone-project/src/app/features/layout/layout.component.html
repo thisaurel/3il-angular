@@ -1,4 +1,12 @@
-<mat-toolbar>Alone project</mat-toolbar>
+<mat-toolbar color="primary"><mat-toolbar-row>
+    <h1 class="title-selector" [routerLink]="'/'">Alone project</h1>
+    <span class="menu-spacer"></span>
+    <div>
+      <a mat-button [routerLink]="'/auth'"> Authentification </a>
+      <a mat-button [routerLink]="'/user-list'"> Liste des utilisateurs </a>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
 <div class="container">
     <router-outlet></router-outlet>
 </div>
