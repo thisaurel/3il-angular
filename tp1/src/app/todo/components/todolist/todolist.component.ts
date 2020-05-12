@@ -4,7 +4,7 @@ import { TodoService } from '../../services/todo.service';
 @Component({
   selector: 'app-todolist',
   templateUrl: './todolist.component.html',
-  styleUrls: ['./todolist.component.sass']
+  styleUrls: ['./todolist.component.scss']
 })
 export class TodolistComponent implements OnInit {
 

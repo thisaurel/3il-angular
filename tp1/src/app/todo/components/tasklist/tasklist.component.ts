@@ -4,7 +4,7 @@ import { Task } from '../../interfaces/task.interface';
 @Component({
   selector: 'app-tasklist',
   templateUrl: './tasklist.component.html',
-  styleUrls: ['./tasklist.component.sass']
+  styleUrls: ['./tasklist.component.scss']
 })
 export class TasklistComponent implements OnInit {
 
