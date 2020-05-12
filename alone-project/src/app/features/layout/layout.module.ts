@@ -6,11 +6,12 @@ import { MaterialModule } from './material.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthComponent } from '../auth/auth.component';
-import { UsersListComponent } from '../users-list/users-list.component';
+import { UsersListComponent } from '../users/users-list/users-list.component';
 import { HomeComponent } from '../home/home.component';
 import { AuthService } from '../../services/auth/auth.service';
 import { MessagesService } from '../../services/messages/messages.service';
 import { MessengerComponent } from '../messenger/messenger.component';
+import { UserComponent } from '../users/user/user.component';
 
 @NgModule({
 	imports: [
@@ -27,6 +28,7 @@ import { MessengerComponent } from '../messenger/messenger.component';
         UsersListComponent,
 		HomeComponent,
 		MessengerComponent,
+		UserComponent,
     ],
 	providers: [
 		AuthService,
