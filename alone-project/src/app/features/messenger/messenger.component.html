@@ -1,7 +1,18 @@
 <h2>Conversation avec {{user.username}}</h2>
 
-<div class="container" *ngFor="let message of messagesList" [ngClass]="isMessageFromMe(message) ? 'darker' : ''">
-    <img [src]="user.picture"  alt="Avatar" style="width:100%;">
-    <p>{{ message.content }}</p>
-    <span class="time-right">{{ message.datetime | date: 'dd/MM/yyyy à hh:mm' }}</span>
+<div class="chatbox" #chatBox>
+    <div class="container" *ngFor="let message of messagesList" [ngClass]="isMessageFromMe(message) ? 'darker' : ''">
+        <img [src]="user.picture"  alt="Avatar" style="width:100%;">
+        <p>{{ message.content }}</p>
+        <span class="time-right">{{ message.datetime | date: 'dd/MM/yyyy à hh:mm' }}</span>
+    </div>
 </div>
+
+<form class="form">
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Ecrire un message</mat-label>
+      <textarea matInput placeholder="Ecrire un message ici" rows="3"></textarea>
+    </mat-form-field>
+
+    <button mat-flat-button color="primary" class="send-message">Envoyer le message</button>
+</form>

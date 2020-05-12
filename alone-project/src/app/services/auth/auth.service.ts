@@ -35,11 +35,6 @@ export class AuthService {
     return this.connectedUser;
   }
 
-  public getMessagesForUser(id: number): Message[] {
-    if (this.connectedUser == null) this.router.navigate(['/']);
-    return data.messages.filter((m) => m.emitterId === id && m.receiverId === this.connectedUser.id);
-  }
-
   public auth(username: string, password: string): boolean {
     const user = data.users.filter((u) => u.username === username && u.password === password);
     if (user.length > 0) {

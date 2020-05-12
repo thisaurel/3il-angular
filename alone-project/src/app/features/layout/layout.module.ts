@@ -9,6 +9,7 @@ import { AuthComponent } from '../auth/auth.component';
 import { UsersListComponent } from '../users-list/users-list.component';
 import { HomeComponent } from '../home/home.component';
 import { AuthService } from '../../services/auth/auth.service';
+import { MessagesService } from '../../services/messages/messages.service';
 import { MessengerComponent } from '../messenger/messenger.component';
 
 @NgModule({
@@ -29,6 +30,7 @@ import { MessengerComponent } from '../messenger/messenger.component';
     ],
 	providers: [
 		AuthService,
+		MessagesService
 	]
 })
 export class LayoutModule { }
