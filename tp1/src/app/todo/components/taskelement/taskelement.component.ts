@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Task } from '../interfaces/task.interface';
-import { TodoService } from '../services/todo.service';
+import { Task } from '../../interfaces/task.interface';
+import { TodoService } from '../../services/todo.service';
 
 @Component({
   selector: 'app-taskelement',
