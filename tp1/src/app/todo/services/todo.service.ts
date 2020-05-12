@@ -45,7 +45,7 @@ export class TodoService {
 
   public switchState(id: number): void {
     let task = this.tasks.find((t) => t.id == id);
-    task.status = (task.status == TaskStatus.todo ? TaskStatus.done : TaskStatus.todo);
+    if (task) task.status = (task.status == TaskStatus.todo ? TaskStatus.done : TaskStatus.todo);
   }
 
 }
