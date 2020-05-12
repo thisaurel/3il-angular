@@ -20,6 +20,24 @@ export class MessagesService {
 		});
   }
 
+  public get all(): Message[] {
+    return data.messages;
+  }
+
+  public add(message: string, emitterIdVal: number, receiverIdVal: number): Message {
+    let lastMessage = this.all.slice(-1)[0];
+    let newId = (lastMessage != null) ? lastMessage.id + 1 : 0;
+    let newMsg: Message = {
+      id: newId,
+      receiverId: receiverIdVal,
+      datetime: new Date().toDateString(),
+      emitterId: emitterIdVal,
+      picture: '',
+      content: message
+    };
+    return newMsg;
+  }
+
   public getLastMessagePerUser(id: number): Message{
     const msg = data.messages.filter((m) =>
       (m.emitterId === this.authService.userConnected.id || m.receiverId === this.authService.userConnected.id) &&

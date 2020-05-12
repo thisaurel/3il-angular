@@ -17,11 +17,11 @@
     <h2>Aucun message avec {{user.username}}</h2>
 </div>
 
-<form class="form">
+<form class="form" [formGroup]="messageForm" (ngSubmit)="onSubmit()">
     <mat-form-field class="full-width" appearance="fill">
       <mat-label>Ecrire un message</mat-label>
-      <textarea matInput placeholder="Ecrire un message ici" rows="3"></textarea>
+      <textarea matInput placeholder="Ecrire un message ici" rows="3" formControlName="messageInput"></textarea>
     </mat-form-field>
 
-    <button mat-flat-button color="primary" class="send-message">Envoyer le message</button>
+    <button mat-flat-button color="primary" class="send-message" [disabled]="!messageForm.valid">Envoyer le message</button>
 </form>

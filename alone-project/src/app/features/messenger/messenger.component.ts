@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { map } from "rxjs/operators";
 import { User } from 'src/app/interfaces/user';
 import { Message } from 'src/app/interfaces/message';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-messenger',
@@ -19,6 +20,12 @@ export class MessengerComponent implements OnInit, AfterViewChecked {
   public user: User;
   public whoAmI: User;
   public id: number;
+
+  messageForm = new FormGroup({
+    messageInput: new FormControl('', [
+      Validators.required
+    ]),
+  });
 
   constructor(
     private authService: AuthService,
@@ -42,6 +49,26 @@ export class MessengerComponent implements OnInit, AfterViewChecked {
 
   ngAfterViewChecked() {
     this.scrollToBottom();
+  }
+
+  public addMessage(message: string): void {
+    const emitterId = this.authService.userConnected.id;
+    const receiverId = this.id;
+    const msg = message;
+
+    const newMsg = this.messageService.add(msg, emitterId, receiverId);
+
+    this.messagesList.push(newMsg);
+    this.messageForm.reset();
+  }
+
+  onSubmit() {
+    const message = this.messageForm.value.messageInput;
+    if (typeof message === 'string' ) {
+      if (message !== '') {
+        this.addMessage(message);
+      }
+    }
   }
 
   public isMessageFromMe(message: Message): boolean {
