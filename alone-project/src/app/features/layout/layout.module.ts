@@ -6,6 +6,7 @@ import { MaterialModule } from './material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthComponent } from '../auth/auth.component';
+import { UsersListComponent } from '../users-list/users-list.component';
 
 @NgModule({
 	imports: [
@@ -15,7 +16,11 @@ import { AuthComponent } from '../auth/auth.component';
 		MaterialModule,
 		HttpClientModule,
 	],
-	declarations: [LayoutComponent, AuthComponent],
+	declarations: [
+        LayoutComponent,
+        AuthComponent,
+        UsersListComponent,
+    ],
 	providers: [
 	]
 })
