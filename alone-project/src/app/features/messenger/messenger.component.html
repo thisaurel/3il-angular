@@ -1,4 +1,7 @@
 <h2>Conversation avec {{user.username}}</h2>
+<button mat-mini-fab color="primary" aria-label="Voir son profil">
+    <mat-icon [routerLink]="['/user/' + user.id]" routerLinkActive="router-link-active" >visibility</mat-icon>
+</button>
 
 <div class="chatbox" #chatBox [style.display]="messagesList.length > 0 ? 'block' : 'none'">
     <div class="container" *ngFor="let message of messagesList">
