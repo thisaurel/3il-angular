@@ -40,7 +40,7 @@ export class UserComponent implements OnInit {
   ngOnInit() { }
 
   /**
-  * Calcul l'âge à partir de la date de l'utilisateur
+  * Calcul l'âge à partir de la date de naissance de l'utilisateur
   *
   * @readonly
   * @type {number}
