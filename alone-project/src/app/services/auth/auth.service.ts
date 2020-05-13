@@ -8,18 +8,14 @@ import { DataService } from '../data/data.service';
 })
 export class AuthService {
 
-  private connectedUser: User;
+  public connectedUser: User;
   public onUserConnected: EventEmitter<User> = new EventEmitter();
 
   constructor(
     public router: Router,
-    private data: DataService
+    private data: DataService,
   ) {
     console.log(this.data.users);
-  }
-
-  public get allWithoutMe(): User[] {
-    return this.data.users.filter((u) => u != this.connectedUser);
   }
 
   public get userConnected(): User {
