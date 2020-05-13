@@ -22,7 +22,7 @@ export class DataService {
   }
 
   /**
-  * Retourne le tableau de messages compris dans le fichier de données
+  * Retourne le tableau des messages compris dans le fichier de données
   *
   * @readonly
   * @type {Message[]}
