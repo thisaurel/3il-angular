@@ -30,10 +30,12 @@ export class MessagesService {
     const listLength = this.data.messages.length;
     let lastMessage = this.all.slice(-1)[0];
     let newId = (lastMessage != null) ? lastMessage.id + 1 : 0;
+    let d = new Date();
+    let datestring = d.getFullYear()  + "-" + (d.getMonth()+1) + "-" + d.getDate() + " " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
     let newMsg: Message = {
       id: newId,
       receiverId: receiverIdVal,
-      datetime: new Date().toDateString(),
+      datetime: datestring,
       emitterId: emitterIdVal,
       picture: pic,
       content: message

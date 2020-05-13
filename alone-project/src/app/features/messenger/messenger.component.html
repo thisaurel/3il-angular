@@ -15,7 +15,7 @@
             <mat-icon *ngIf="isMessageFromMe(message)" class="clear-message" (click)="removeMessage(message.id)">clear</mat-icon>
             <mat-icon *ngIf="isMessageFromMe(message)" class="edit-message" (click)="openModal(template)">edit</mat-icon>
         </p>
-        <span [ngClass]="isMessageFromMe(message) ? 'time-left' : 'time-right'">{{ message.datetime | date: 'dd/MM/yyyy à hh:mm' }}</span>
+        <span [ngClass]="isMessageFromMe(message) ? 'time-left' : 'time-right'">{{ message.datetime | date: 'dd/MM/yyyy à HH:mm' }}</span>
 
         <ng-template #template>
             <div mat-dialog-content>
