@@ -64,7 +64,7 @@ export class MessagesService {
   }
 
   /**
-  * Supprime un message des données
+  * Supprime un message des données par son id
   *
   * @param {number} id
   * @returns {boolean}
