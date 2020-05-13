@@ -33,7 +33,7 @@ export class UserComponent implements OnInit {
     const id: Observable<string> = route.params.pipe(map(p => p.id));
     id.subscribe((routeId) => {
       this.user = this.usersService.getUserById(+routeId);
-      this.mapsURL = `https://maps.google.com/maps?q=${this.user.localisation.lat},${this.user.localisation.long}&hl=es&z=14&output=embed`;
+      this.mapsURL = `https://maps.google.com/maps?q=${this.user.localisation.lat},${this.user.localisation.long}&hl=fr&z=14&output=embed`;
     });
   }
 
