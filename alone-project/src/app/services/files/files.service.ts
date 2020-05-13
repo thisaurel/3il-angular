@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { HTMLInputEvent } from '../../interfaces/html-input-event';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class FilesService {
   * @returns {Promise<string>}
   * @memberof FilesService
   */
-  public handleUpload(event: Event): Promise<string> {
+  public handleUpload(event: HTMLInputEvent): Promise<string> {
     return new Promise((resolve, reject) => {
       const file = event.target.files[0];
       const reader = new FileReader();
