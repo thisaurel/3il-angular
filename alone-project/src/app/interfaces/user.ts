@@ -5,6 +5,7 @@ export interface User {
     firstName: string;
     lastName: string;
     birthDate: string;
+    picture: string;
     localisation: Localisation;
     mail: string;
     phone: string;

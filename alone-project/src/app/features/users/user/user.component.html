@@ -1,6 +1,13 @@
 <h2>Profil de {{ user.username }}</h2>
 
-<img [src]="user.picture" alt="">
+<img [src]="user.picture" alt="" class="profil-picture">
+
+<div class="photo-change" *ngIf="authService.userConnected != null && authService.userConnected.id === user.id">
+  <hr>
+  <input type="file" (change)="handleUpload($event)">
+  <button mat-flat-button color="primary" (click)="updateProfilPicture();" [disabled]="uploadedPicture === ''">Changer de photo</button>
+  <hr>
+</div>
 
 <p>Prénom: {{ user.firstName }}</p>
 <p>Nom: {{ user.lastName }}</p>

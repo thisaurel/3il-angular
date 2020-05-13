@@ -5,6 +5,7 @@ import { map } from "rxjs/operators";
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/interfaces/user';
 import { DomSanitizer } from '@angular/platform-browser';
+import { MessagesService } from 'src/app/services/messages/messages.service';
 
 @Component({
   selector: 'app-user',
@@ -16,9 +17,11 @@ export class UserComponent implements OnInit {
   public id: number;
   public user: User;
   public mapsURL: string = '';
+  public uploadedPicture: string = '';
 
   constructor(
     private authService: AuthService,
+    private messageService: MessagesService,
     route: ActivatedRoute,
     public sanitizer: DomSanitizer,
   ) {
@@ -29,15 +32,28 @@ export class UserComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() { }
 
   public get age(): number {
     let birthDate = new Date(this.user.birthDate);
     let ageDiff = Date.now() - birthDate.getTime();
     let ageDate = new Date(ageDiff);
     return Math.abs(ageDate.getUTCFullYear() - 1970);
+  }
+
+  handleUpload(event: any): void {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      this.uploadedPicture = reader.result.toString();
+    };
+  }
+
+  updateProfilPicture() {
+    if (!this.messageService.updateProfilPicture(this.uploadedPicture)) {
+      alert('Erreur lors de l\'envoie');
+    }
   }
 
 }

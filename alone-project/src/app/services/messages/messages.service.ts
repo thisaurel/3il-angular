@@ -48,7 +48,14 @@ export class MessagesService {
     return (listLength > newListLength);
   }
 
-  public getLastMessagePerUser(id: number): Message{
+  public updateProfilPicture(picture: string): boolean {
+    const previousPic = this.authService.userConnected.picture;
+    this.authService.userConnected.picture = picture;
+    const newPic = this.authService.userConnected.picture;
+    return (previousPic !== newPic);
+  }
+
+  public getLastMessagePerUser(id: number): Message {
     const msg = data.messages.filter((m) =>
       (m.emitterId === this.authService.userConnected.id || m.receiverId === this.authService.userConnected.id) &&
       (m.emitterId === id || m.receiverId === id));
