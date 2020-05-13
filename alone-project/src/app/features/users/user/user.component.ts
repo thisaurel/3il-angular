@@ -7,6 +7,7 @@ import { User } from 'src/app/interfaces/user';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MessagesService } from 'src/app/services/messages/messages.service';
 import { UsersService } from 'src/app/services/users/users.service';
+import { FilesService } from 'src/app/services/files/files.service';
 
 @Component({
   selector: 'app-user',
@@ -26,6 +27,7 @@ export class UserComponent implements OnInit {
     route: ActivatedRoute,
     public sanitizer: DomSanitizer,
     public usersService: UsersService,
+    public filesService: FilesService
   ) {
     const id: Observable<string> = route.params.pipe(map(p => p.id));
     id.subscribe((routeId) => {
@@ -36,6 +38,13 @@ export class UserComponent implements OnInit {
 
   ngOnInit() { }
 
+  /**
+  * Calcul l'âge à partir de la date de l'utilisateur
+  *
+  * @readonly
+  * @type {number}
+  * @memberof UserComponent
+  */
   public get age(): number {
     let birthDate = new Date(this.user.birthDate);
     let ageDiff = Date.now() - birthDate.getTime();
@@ -43,16 +52,26 @@ export class UserComponent implements OnInit {
     return Math.abs(ageDate.getUTCFullYear() - 1970);
   }
 
-  handleUpload(event: any): void {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => {
-      this.uploadedPicture = reader.result.toString();
-    };
+  /**
+  * Appelle le service de fichier pour récupérer le fichier en base64
+  *
+  * @param {Event} event
+  * @memberof UserComponent
+  */
+  handleUpload(event: Event): void {
+    this.filesService.handleUpload(event).then((file) => {
+      this.uploadedPicture = file;
+    }).catch((e) => {
+      console.log(e);
+    })
   }
 
-  updateProfilPicture() {
+  /**
+  * Met à jour la photo de profil de l'utilisateur
+  *
+  * @memberof UserComponent
+  */
+  updateProfilPicture(): void {
     if (!this.messageService.updateProfilPicture(this.uploadedPicture)) {
       alert('Erreur lors de l\'envoie');
     }

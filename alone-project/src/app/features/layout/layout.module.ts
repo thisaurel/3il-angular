@@ -14,6 +14,7 @@ import { MessengerComponent } from '../messenger/messenger.component';
 import { UserComponent } from '../users/user/user.component';
 import { DataService } from 'src/app/services/data/data.service';
 import { UsersService } from 'src/app/services/users/users.service';
+import { FilesService } from 'src/app/services/files/files.service';
 
 @NgModule({
 	imports: [
@@ -37,6 +38,7 @@ import { UsersService } from 'src/app/services/users/users.service';
 		MessagesService,
 		DataService,
 		UsersService,
+		FilesService
 	]
 })
 export class LayoutModule { }

@@ -26,7 +26,12 @@ export class LayoutComponent implements OnInit {
 
 	ngOnInit() { }
 
-	public logout() {
+	/**
+	* Procédure pour déconnecter l'utilisateur en appelant le service d'authentification
+	*
+	* @memberof LayoutComponent
+	*/
+	public logout(): void {
 		if (this.authService.logout()) {
 			this.authService.router.navigate(['/']);
 		} else {

@@ -9,6 +9,7 @@ import { Message } from 'src/app/interfaces/message';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UsersService } from 'src/app/services/users/users.service';
+import { FilesService } from 'src/app/services/files/files.service';
 
 @Component({
   selector: 'app-messenger',
@@ -41,6 +42,7 @@ export class MessengerComponent implements OnInit, AfterViewChecked {
     route: ActivatedRoute,
     public dialog: MatDialog,
     public usersService: UsersService,
+    public filesService: FilesService
   ) {
     const id: Observable<string> = route.params.pipe(map(p => p.id));
     id.subscribe((routeId) => {
@@ -57,10 +59,21 @@ export class MessengerComponent implements OnInit, AfterViewChecked {
     this.scrollToBottom();
   }
 
+  /**
+  * Maintient le scroll de la chatbox en bas
+  *
+  * @memberof MessengerComponent
+  */
   ngAfterViewChecked() {
     this.scrollToBottom();
   }
 
+  /**
+  * Appelle le service message pour pouvoir supprimer un message à partir de son id
+  *
+  * @param {number} id
+  * @memberof MessengerComponent
+  */
   public removeMessage(id: number): void {
     if (this.messageService.deleteMessage(id)) {
       this.messagesList = this.messageService.getMessagesForUser(this.id);
@@ -69,6 +82,12 @@ export class MessengerComponent implements OnInit, AfterViewChecked {
     }
   }
 
+  /**
+  * Appelle le service message pour ajouter un message aux données
+  *
+  * @param {string} message
+  * @memberof MessengerComponent
+  */
   public addMessage(message: string): void {
     const emitterId = this.usersService.userConnected.id;
     const receiverId = this.id;
@@ -82,12 +101,24 @@ export class MessengerComponent implements OnInit, AfterViewChecked {
     }
   }
 
+  /**
+  * Ouvre la boîte de dialogue pour l'édition d'un message
+  *
+  * @param {*} template
+  * @memberof MessengerComponent
+  */
   public openModal(template: any): void {
     this.dialog.open(template, {
         width: '500px',
     });
   }
 
+  /**
+  * Met à jour un message avec sa nouvelle valeure
+  *
+  * @param {number} id
+  * @memberof MessengerComponent
+  */
   public updateMessage(id: number): void {
     if (typeof this.updateGroup.value.inputUpdateMessage === 'string') {
       if (this.messageService.updateMessage(id, this.updateGroup.value.inputUpdateMessage)) {
@@ -99,6 +130,11 @@ export class MessengerComponent implements OnInit, AfterViewChecked {
     }
   }
 
+  /**
+  * Appelle une fonction du composant pour ajouter un message
+  *
+  * @memberof MessengerComponent
+  */
   onSubmit(): void {
     const message = this.messageForm.value.messageInput;
     if (typeof message === 'string' ) {
@@ -108,19 +144,36 @@ export class MessengerComponent implements OnInit, AfterViewChecked {
     }
   }
 
-  handleUpload(event: any): void {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => {
-      this.uploadedPicture = reader.result.toString();
-    };
+  /**
+  * Appelle le service de fichier pour récupérer le fichier en base64
+  *
+  * @param {Event} event
+  * @memberof UserComponent
+  */
+  handleUpload(event: Event): void {
+    this.filesService.handleUpload(event).then((file) => {
+      this.uploadedPicture = file;
+    }).catch((e) => {
+      console.log(e);
+    })
   }
 
+  /**
+  * Retourne un booleen pour savoir si l'utilisateur connecté est l'expéditeur ou non
+  *
+  * @param {Message} message
+  * @returns {boolean}
+  * @memberof MessengerComponent
+  */
   public isMessageFromMe(message: Message): boolean {
     return (this.usersService.userConnected.id === message.emitterId) ? true : false;
   }
 
+  /**
+  * Permet de maintenir le scroll de la chatbox
+  *
+  * @memberof MessengerComponent
+  */
   scrollToBottom(): void {
     try {
       this.chatBox.nativeElement.scrollTop = this.chatBox.nativeElement.scrollHeight;

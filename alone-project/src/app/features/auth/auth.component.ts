@@ -29,6 +29,11 @@ export class AuthComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+  * Vérifie les champs du formulaire et appelle le service d'authentification pour procéder à la connexion
+  *
+  * @memberof AuthComponent
+  */
   onSubmit() {
     const username = this.authForm.value.username;
     const password = this.authForm.value.password;
