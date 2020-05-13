@@ -18,6 +18,14 @@ export class AuthService {
     console.log(this.data.users);
   }
 
+  /**
+  * Authentifie un utilisateur par son pseudo et son mot de passe
+  *
+  * @param {string} username
+  * @param {string} password
+  * @returns {boolean}
+  * @memberof AuthService
+  */
   public auth(username: string, password: string): boolean {
     const user = this.data.users.filter((u) => u.username === username && u.password === password);
     if (user.length > 0) {
@@ -29,6 +37,12 @@ export class AuthService {
     }
   }
 
+  /**
+  * Déconnecte l'utilisateur
+  *
+  * @returns {boolean}
+  * @memberof AuthService
+  */
   public logout(): boolean {
     this.connectedUser = null;
     this.onUserConnected.emit(this.connectedUser);
