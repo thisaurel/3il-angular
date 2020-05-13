@@ -94,7 +94,7 @@ export class MessagesService {
   }
 
   /**
-  * Met à jour le message de l'utilisateur connecté
+  * Met à jour le message de l'utilisateur connecté par son id
   *
   * @param {number} id
   * @param {string} message
