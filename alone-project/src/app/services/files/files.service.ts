@@ -11,7 +11,7 @@ export class FilesService {
   /**
   * Crée une promesse qui va retourner le fichier en base64
   *
-  * @param {Event} event
+  * @param {HTMLInputEvent} event
   * @returns {Promise<string>}
   * @memberof FilesService
   */

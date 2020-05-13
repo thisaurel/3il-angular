@@ -56,7 +56,7 @@ export class UserComponent implements OnInit {
   /**
   * Appelle le service de fichier pour récupérer le fichier en base64
   *
-  * @param {Event} event
+  * @param {HTMLInputEvent} event
   * @memberof UserComponent
   */
   handleUpload(event: HTMLInputEvent): void {
