@@ -24,7 +24,8 @@ export class MessagesService {
     return data.messages;
   }
 
-  public add(message: string, pic: string,emitterIdVal: number, receiverIdVal: number): Message {
+  public add(message: string, pic: string,emitterIdVal: number, receiverIdVal: number): boolean {
+    const listLength = data.messages.length;
     let lastMessage = this.all.slice(-1)[0];
     let newId = (lastMessage != null) ? lastMessage.id + 1 : 0;
     let newMsg: Message = {
@@ -35,7 +36,16 @@ export class MessagesService {
       picture: pic,
       content: message
     };
-    return newMsg;
+    data.messages.push(newMsg);
+    const newListLength = data.messages.length;
+    return (listLength < newListLength);
+  }
+
+  public deleteMessage(id: number): boolean {
+    const listLength = data.messages.length;
+    if (data.messages.filter((m) => m.id === id)) data.messages.splice(data.messages.findIndex((m) => m.id == id), 1);
+    const newListLength = data.messages.length;
+    return (listLength > newListLength);
   }
 
   public getLastMessagePerUser(id: number): Message{

@@ -12,6 +12,7 @@
         <p [ngClass]="isMessageFromMe(message) ? 'text-align-end' : ''">
             {{ message.content }}
             <img class="message-picture" [src]="message.picture" alt="img" *ngIf="message.picture !== ''">
+            <mat-icon *ngIf="isMessageFromMe(message)" class="clear-message" (click)="removeMessage(message.id)">clear</mat-icon>
         </p>
         <span [ngClass]="isMessageFromMe(message) ? 'time-left' : 'time-right'">{{ message.datetime | date: 'dd/MM/yyyy à hh:mm' }}</span>
     </div>

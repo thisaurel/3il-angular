@@ -21,7 +21,6 @@ export class UsersListComponent implements OnInit {
       console.log(this.user);
       if (this.user == null) this.authService.router.navigate(['/']);
     });
-    console.log(this.messageService.getLastMessagePerUser(2));
   }
 
   ngOnInit() {

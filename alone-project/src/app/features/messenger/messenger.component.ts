@@ -52,19 +52,30 @@ export class MessengerComponent implements OnInit, AfterViewChecked {
     this.scrollToBottom();
   }
 
+  public removeMessage(id: number): void {
+    if (this.messageService.deleteMessage(id)) {
+      this.messagesList = this.messageService.getMessagesForUser(this.id);
+    } else {
+      alert('Erreur lors de la suppression');
+    }
+  }
+
   public addMessage(message: string): void {
     const emitterId = this.authService.userConnected.id;
     const receiverId = this.id;
     const msg = message;
     const pic = this.uploadedPicture;
 
-    const newMsg = this.messageService.add(msg, pic,emitterId, receiverId);
+    if (this.messageService.add(msg, pic,emitterId, receiverId)) {
+      this.messagesList = this.messageService.getMessagesForUser(this.id);
+      this.messageForm.reset();
+    } else {
+      alert('Erreur lors de l\'envoie');
+    }
 
-    this.messagesList.push(newMsg);
-    this.messageForm.reset();
   }
 
-  onSubmit() {
+  onSubmit(): void {
     const message = this.messageForm.value.messageInput;
     if (typeof message === 'string' ) {
       if (message !== '') {
@@ -73,7 +84,7 @@ export class MessengerComponent implements OnInit, AfterViewChecked {
     }
   }
 
-  handleUpload(event: Event): void {
+  handleUpload(event: any): void {
     const file = event.target.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(file);
