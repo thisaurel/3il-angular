@@ -12,6 +12,7 @@ import { AuthService } from '../../services/auth/auth.service';
 import { MessagesService } from '../../services/messages/messages.service';
 import { MessengerComponent } from '../messenger/messenger.component';
 import { UserComponent } from '../users/user/user.component';
+import { DataService } from 'src/app/services/data/data.service';
 
 @NgModule({
 	imports: [
@@ -32,7 +33,8 @@ import { UserComponent } from '../users/user/user.component';
     ],
 	providers: [
 		AuthService,
-		MessagesService
+		MessagesService,
+		DataService
 	]
 })
 export class LayoutModule { }

@@ -1,9 +1,8 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import * as data from '../../data/data.json';
 import { User } from 'src/app/interfaces/user';
-import { Router } from '@angular/router';
-import { Message } from 'src/app/interfaces/message';
 import { AuthService } from '../auth/auth.service';
+import { DataService } from '../data/data.service';
+import { Message } from 'src/app/interfaces/message';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +13,7 @@ export class MessagesService {
 
   constructor(
     private authService: AuthService,
+    private data: DataService
   ) {
 		this.authService.onUserConnected.subscribe((user: User) => {
 			this.user = user;
@@ -21,11 +21,11 @@ export class MessagesService {
   }
 
   public get all(): Message[] {
-    return data.messages;
+    return this.data.messages;
   }
 
   public add(message: string, pic: string,emitterIdVal: number, receiverIdVal: number): boolean {
-    const listLength = data.messages.length;
+    const listLength = this.data.messages.length;
     let lastMessage = this.all.slice(-1)[0];
     let newId = (lastMessage != null) ? lastMessage.id + 1 : 0;
     let newMsg: Message = {
@@ -36,15 +36,15 @@ export class MessagesService {
       picture: pic,
       content: message
     };
-    data.messages.push(newMsg);
-    const newListLength = data.messages.length;
+    this.data.messages.push(newMsg);
+    const newListLength = this.data.messages.length;
     return (listLength < newListLength);
   }
 
   public deleteMessage(id: number): boolean {
-    const listLength = data.messages.length;
-    if (data.messages.filter((m) => m.id === id)) data.messages.splice(data.messages.findIndex((m) => m.id == id), 1);
-    const newListLength = data.messages.length;
+    const listLength = this.data.messages.length;
+    if (this.data.messages.filter((m) => m.id === id)) this.data.messages.splice(this.data.messages.findIndex((m) => m.id == id), 1);
+    const newListLength = this.data.messages.length;
     return (listLength > newListLength);
   }
 
@@ -64,11 +64,11 @@ export class MessagesService {
   }
 
   private getMessagePerId(id: number): Message {
-    return data.messages.filter((m) => m.id === id)[0];
+    return this.data.messages.filter((m) => m.id === id)[0];
   }
 
   public getLastMessagePerUser(id: number): Message {
-    const msg = data.messages.filter((m) =>
+    const msg = this.data.messages.filter((m) =>
       (m.emitterId === this.authService.userConnected.id || m.receiverId === this.authService.userConnected.id) &&
       (m.emitterId === id || m.receiverId === id));
     return msg[msg.length - 1];
@@ -76,7 +76,7 @@ export class MessagesService {
 
   public getMessagesForUser(id: number): Message[] {
     if (this.authService.userConnected == null) this.authService.router.navigate(['/']);
-    return data.messages.filter((m) =>
+    return this.data.messages.filter((m) =>
       (m.emitterId === this.authService.userConnected.id || m.receiverId === this.authService.userConnected.id) &&
       (m.emitterId === id || m.receiverId === id));
   }
