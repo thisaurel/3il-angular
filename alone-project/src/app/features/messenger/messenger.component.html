@@ -6,7 +6,7 @@
 <div class="chatbox" #chatBox [style.display]="messagesList.length > 0 ? 'block' : 'none'">
     <div class="container" *ngFor="let message of messagesList" [ngClass]="isMessageFromMe(message) ? 'darker' : ''">
         <img [src]="isMessageFromMe(message) ?
-        this.authService.userConnected.picture : user.picture"
+        this.usersService.userConnected.picture : user.picture"
         alt="Avatar" style="width:100%;"
         [ngClass]="isMessageFromMe(message) ? 'right' : ''">
         <p [ngClass]="isMessageFromMe(message) ? 'text-align-end' : ''">

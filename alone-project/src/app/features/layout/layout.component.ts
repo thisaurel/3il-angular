@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { User } from 'src/app/interfaces/user';
 import { Router } from '@angular/router';
+import { UsersService } from 'src/app/services/users/users.service';
 
 @Component({
 	selector: 'app-layout',
@@ -14,10 +15,12 @@ export class LayoutComponent implements OnInit {
 
 	constructor(
 		private authService: AuthService,
+		private usersService: UsersService,
 		public router: Router
 	) {
 		this.authService.onUserConnected.subscribe((user: User) => {
 			this.user = user;
+			this.usersService.setUser(this.user);
 		});
 	}
 

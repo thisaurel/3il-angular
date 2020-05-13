@@ -2,7 +2,7 @@
 
 <img [src]="user.picture" alt="" class="profil-picture">
 
-<div class="photo-change" *ngIf="authService.userConnected != null && authService.userConnected.id === user.id">
+<div class="photo-change" *ngIf="usersService.user != null && usersService.user.id === user.id">
   <hr>
   <input type="file" (change)="handleUpload($event)">
   <button mat-flat-button color="primary" (click)="updateProfilPicture();" [disabled]="uploadedPicture === ''">Changer de photo</button>

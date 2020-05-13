@@ -48,7 +48,7 @@ export class MessengerComponent implements OnInit, AfterViewChecked {
       this.messagesList = this.messageService.getMessagesForUser(this.id);
       this.user = this.usersService.getUserById(this.id);
     });
-    this.whoAmI = this.authService.userConnected;
+    this.whoAmI = this.usersService.userConnected;
   }
 
   ngOnInit() {
@@ -70,7 +70,7 @@ export class MessengerComponent implements OnInit, AfterViewChecked {
   }
 
   public addMessage(message: string): void {
-    const emitterId = this.authService.userConnected.id;
+    const emitterId = this.usersService.userConnected.id;
     const receiverId = this.id;
     const msg = message;
     const pic = this.uploadedPicture;
@@ -118,7 +118,7 @@ export class MessengerComponent implements OnInit, AfterViewChecked {
   }
 
   public isMessageFromMe(message: Message): boolean {
-    return (this.authService.userConnected.id === message.emitterId) ? true : false;
+    return (this.usersService.userConnected.id === message.emitterId) ? true : false;
   }
 
   scrollToBottom(): void {

@@ -3,6 +3,7 @@ import { User } from 'src/app/interfaces/user';
 import { AuthService } from '../auth/auth.service';
 import { DataService } from '../data/data.service';
 import { Message } from 'src/app/interfaces/message';
+import { UsersService } from '../users/users.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,8 @@ export class MessagesService {
 
   constructor(
     private authService: AuthService,
-    private data: DataService
+    private data: DataService,
+    private usersService: UsersService
   ) {
 		this.authService.onUserConnected.subscribe((user: User) => {
 			this.user = user;
@@ -49,9 +51,9 @@ export class MessagesService {
   }
 
   public updateProfilPicture(picture: string): boolean {
-    const previousPic = this.authService.userConnected.picture;
-    this.authService.userConnected.picture = picture;
-    const newPic = this.authService.userConnected.picture;
+    const previousPic = this.usersService.userConnected.picture;
+    this.usersService.userConnected.picture = picture;
+    const newPic = this.usersService.userConnected.picture;
     return (previousPic !== newPic);
   }
 
@@ -69,15 +71,15 @@ export class MessagesService {
 
   public getLastMessagePerUser(id: number): Message {
     const msg = this.data.messages.filter((m) =>
-      (m.emitterId === this.authService.userConnected.id || m.receiverId === this.authService.userConnected.id) &&
+      (m.emitterId === this.usersService.userConnected.id || m.receiverId === this.usersService.userConnected.id) &&
       (m.emitterId === id || m.receiverId === id));
     return msg[msg.length - 1];
   }
 
   public getMessagesForUser(id: number): Message[] {
-    if (this.authService.userConnected == null) this.authService.router.navigate(['/']);
+    if (this.usersService.userConnected == null) this.authService.router.navigate(['/']);
     return this.data.messages.filter((m) =>
-      (m.emitterId === this.authService.userConnected.id || m.receiverId === this.authService.userConnected.id) &&
+      (m.emitterId === this.usersService.userConnected.id || m.receiverId === this.usersService.userConnected.id) &&
       (m.emitterId === id || m.receiverId === id));
   }
 

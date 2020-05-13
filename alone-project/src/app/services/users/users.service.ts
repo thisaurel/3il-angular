@@ -8,10 +8,20 @@ import { AuthService } from '../auth/auth.service';
 })
 export class UsersService {
 
+  private connectedUser: User;
+
   constructor(
     private data: DataService,
     private authService: AuthService,
   ) { }
+
+  public setUser(user: User): void {
+    this.connectedUser = user;
+  }
+
+  public get user(): User {
+    return this.connectedUser;
+  }
 
   public get all(): User[] {
     return this.data.users;
@@ -24,6 +34,10 @@ export class UsersService {
 
   public get allWithoutMe(): User[] {
     return this.data.users.filter((u) => u != this.authService.connectedUser);
+  }
+
+  public get userConnected(): User {
+    return this.authService.connectedUser;
   }
 
 }

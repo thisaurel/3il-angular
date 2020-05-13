@@ -18,10 +18,6 @@ export class AuthService {
     console.log(this.data.users);
   }
 
-  public get userConnected(): User {
-    return this.connectedUser;
-  }
-
   public auth(username: string, password: string): boolean {
     const user = this.data.users.filter((u) => u.username === username && u.password === password);
     if (user.length > 0) {
