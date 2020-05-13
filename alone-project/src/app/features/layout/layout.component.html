@@ -6,7 +6,7 @@
       <a mat-button [routerLink]="'/user-list'" *ngIf="user != null"> Liste des utilisateurs </a>
     </div>
     <div class="right" *ngIf="user != null">
-      <span class="username">{{ (user != null) ? user.username : 'Non connecté(e)' }}</span>
+      <a mat-button [routerLink]="'/user/' + user.id"> {{ (user != null) ? user.username : 'Non connecté(e)' }} </a>
       <mat-icon class="logout" (click)="logout()">exit_to_app</mat-icon>
     </div>
   </mat-toolbar-row>

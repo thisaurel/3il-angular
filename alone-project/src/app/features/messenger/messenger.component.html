@@ -7,8 +7,12 @@
     <div class="container" *ngFor="let message of messagesList" [ngClass]="isMessageFromMe(message) ? 'darker' : ''">
         <img [src]="isMessageFromMe(message) ?
         this.authService.userConnected.picture : user.picture"
-        alt="Avatar" style="width:100%;" [ngClass]="isMessageFromMe(message) ? 'right' : ''">
-        <p [ngClass]="isMessageFromMe(message) ? 'text-align-end' : ''">{{ message.content }}</p>
+        alt="Avatar" style="width:100%;"
+        [ngClass]="isMessageFromMe(message) ? 'right' : ''">
+        <p [ngClass]="isMessageFromMe(message) ? 'text-align-end' : ''">
+            {{ message.content }}
+            <img class="message-picture" [src]="message.picture" alt="img" *ngIf="message.picture !== ''">
+        </p>
         <span [ngClass]="isMessageFromMe(message) ? 'time-left' : 'time-right'">{{ message.datetime | date: 'dd/MM/yyyy à hh:mm' }}</span>
     </div>
 </div>
@@ -22,6 +26,8 @@
       <mat-label>Ecrire un message</mat-label>
       <textarea matInput placeholder="Ecrire un message ici" rows="3" formControlName="messageInput" (keyup.enter)="onSubmit()"></textarea>
     </mat-form-field>
+
+    <input type="file" (change)="handleUpload($event)">
 
     <button mat-flat-button color="primary" class="send-message" [disabled]="!messageForm.valid">Envoyer le message</button>
 </form>

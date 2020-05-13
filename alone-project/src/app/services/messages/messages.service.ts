@@ -24,7 +24,7 @@ export class MessagesService {
     return data.messages;
   }
 
-  public add(message: string, emitterIdVal: number, receiverIdVal: number): Message {
+  public add(message: string, pic: string,emitterIdVal: number, receiverIdVal: number): Message {
     let lastMessage = this.all.slice(-1)[0];
     let newId = (lastMessage != null) ? lastMessage.id + 1 : 0;
     let newMsg: Message = {
@@ -32,7 +32,7 @@ export class MessagesService {
       receiverId: receiverIdVal,
       datetime: new Date().toDateString(),
       emitterId: emitterIdVal,
-      picture: '',
+      picture: pic,
       content: message
     };
     return newMsg;

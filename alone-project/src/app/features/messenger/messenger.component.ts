@@ -20,6 +20,7 @@ export class MessengerComponent implements OnInit, AfterViewChecked {
   public user: User;
   public whoAmI: User;
   public id: number;
+  public uploadedPicture: string = '';
 
   messageForm = new FormGroup({
     messageInput: new FormControl('', [
@@ -55,8 +56,9 @@ export class MessengerComponent implements OnInit, AfterViewChecked {
     const emitterId = this.authService.userConnected.id;
     const receiverId = this.id;
     const msg = message;
+    const pic = this.uploadedPicture;
 
-    const newMsg = this.messageService.add(msg, emitterId, receiverId);
+    const newMsg = this.messageService.add(msg, pic,emitterId, receiverId);
 
     this.messagesList.push(newMsg);
     this.messageForm.reset();
@@ -69,6 +71,15 @@ export class MessengerComponent implements OnInit, AfterViewChecked {
         this.addMessage(message);
       }
     }
+  }
+
+  handleUpload(event: Event): void {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      this.uploadedPicture = reader.result.toString();
+    };
   }
 
   public isMessageFromMe(message: Message): boolean {
