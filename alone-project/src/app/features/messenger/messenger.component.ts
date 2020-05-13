@@ -13,7 +13,7 @@ import { FilesService } from 'src/app/services/files/files.service';
 import { HTMLInputEvent } from '../../interfaces/html-input-event';
 
 @Component({
-  selector: 'app-messenger',
+  selector: 'alone-project-messenger',
   templateUrl: './messenger.component.html',
   styleUrls: ['./messenger.component.scss']
 })

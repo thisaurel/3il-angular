@@ -11,7 +11,7 @@ import { FilesService } from 'src/app/services/files/files.service';
 import { HTMLInputEvent } from '../../../interfaces/html-input-event';
 
 @Component({
-  selector: 'app-user',
+  selector: 'alone-project-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss']
 })

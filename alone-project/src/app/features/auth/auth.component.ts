@@ -4,7 +4,7 @@ import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-auth',
+  selector: 'alone-project-auth',
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss']
 })

@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { UsersService } from 'src/app/services/users/users.service';
 
 @Component({
-	selector: 'app-layout',
+	selector: 'alone-project-layout',
 	templateUrl: './layout.component.html',
 	styleUrls: ['./layout.component.scss']
 })

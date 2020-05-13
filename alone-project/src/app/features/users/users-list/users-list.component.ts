@@ -5,7 +5,7 @@ import { MessagesService } from 'src/app/services/messages/messages.service';
 import { UsersService } from 'src/app/services/users/users.service';
 
 @Component({
-  selector: 'app-users-list',
+  selector: 'alone-project-users-list',
   templateUrl: './users-list.component.html',
   styleUrls: ['./users-list.component.scss']
 })
