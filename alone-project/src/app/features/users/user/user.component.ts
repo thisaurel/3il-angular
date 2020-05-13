@@ -8,6 +8,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { MessagesService } from 'src/app/services/messages/messages.service';
 import { UsersService } from 'src/app/services/users/users.service';
 import { FilesService } from 'src/app/services/files/files.service';
+import { HTMLInputEvent } from '../../../interfaces/html-input-event';
 
 @Component({
   selector: 'app-user',
@@ -58,7 +59,7 @@ export class UserComponent implements OnInit {
   * @param {Event} event
   * @memberof UserComponent
   */
-  handleUpload(event: Event): void {
+  handleUpload(event: HTMLInputEvent): void {
     this.filesService.handleUpload(event).then((file) => {
       this.uploadedPicture = file;
     }).catch((e) => {
