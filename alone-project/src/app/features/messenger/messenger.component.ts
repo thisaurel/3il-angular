@@ -181,6 +181,6 @@ export class MessengerComponent implements OnInit, AfterViewChecked {
     } catch(err) {
       console.log(err);
     }
-}
+  }
 
 }
