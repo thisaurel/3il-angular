@@ -1,10 +1,10 @@
 <h2>Conversation avec {{user.username}}</h2>
-<button mat-mini-fab color="primary" aria-label="Voir son profil">
-    <mat-icon [routerLink]="['/user/' + user.id]" routerLinkActive="router-link-active" >visibility</mat-icon>
+<button mat-mini-fab color="primary" aria-label="Voir son profil" class="profil-view" [routerLink]="['/user/' + user.id]" routerLinkActive="router-link-active">
+    <mat-icon>visibility</mat-icon>
 </button>
 
 <div class="chatbox" #chatBox [style.display]="messagesList.length > 0 ? 'block' : 'none'">
-    <div class="container" *ngFor="let message of messagesList">
+    <div class="container" *ngFor="let message of messagesList" [ngClass]="isMessageFromMe(message) ? 'darker' : ''">
         <img [src]="isMessageFromMe(message) ?
         this.authService.userConnected.picture : user.picture"
         alt="Avatar" style="width:100%;" [ngClass]="isMessageFromMe(message) ? 'right' : ''">
@@ -20,7 +20,7 @@
 <form class="form" [formGroup]="messageForm" (ngSubmit)="onSubmit()">
     <mat-form-field class="full-width" appearance="fill">
       <mat-label>Ecrire un message</mat-label>
-      <textarea matInput placeholder="Ecrire un message ici" rows="3" formControlName="messageInput"></textarea>
+      <textarea matInput placeholder="Ecrire un message ici" rows="3" formControlName="messageInput" (keyup.enter)="onSubmit()"></textarea>
     </mat-form-field>
 
     <button mat-flat-button color="primary" class="send-message" [disabled]="!messageForm.valid">Envoyer le message</button>
