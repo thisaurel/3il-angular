@@ -55,6 +55,18 @@ export class MessagesService {
     return (previousPic !== newPic);
   }
 
+  public updateMessage(id: number, message: string): boolean {
+    const msg = this.getMessagePerId(id);
+    const previousMsg = msg.content;
+    msg.content = message;
+    const newMsg = msg.content;
+    return (previousMsg !== newMsg);
+  }
+
+  private getMessagePerId(id: number): Message {
+    return data.messages.filter((m) => m.id === id)[0];
+  }
+
   public getLastMessagePerUser(id: number): Message {
     const msg = data.messages.filter((m) =>
       (m.emitterId === this.authService.userConnected.id || m.receiverId === this.authService.userConnected.id) &&

@@ -13,9 +13,25 @@
             {{ message.content }}
             <img class="message-picture" [src]="message.picture" alt="img" *ngIf="message.picture !== ''">
             <mat-icon *ngIf="isMessageFromMe(message)" class="clear-message" (click)="removeMessage(message.id)">clear</mat-icon>
-            <mat-icon *ngIf="isMessageFromMe(message)" class="edit-message" >edit</mat-icon>
+            <mat-icon *ngIf="isMessageFromMe(message)" class="edit-message" (click)="openModal(template)">edit</mat-icon>
         </p>
         <span [ngClass]="isMessageFromMe(message) ? 'time-left' : 'time-right'">{{ message.datetime | date: 'dd/MM/yyyy à hh:mm' }}</span>
+
+        <ng-template #template>
+            <div mat-dialog-content>
+            <h2>Changer votre message</h2>
+            <mat-form-field>
+                <div [formGroup]="updateGroup">
+                    <input matInput [value]="message.content" formControlName="inputUpdateMessage" class="full-width">
+                </div>
+            </mat-form-field>
+            </div>
+            <div mat-dialog-actions>
+                <button mat-button [mat-dialog-close]="true">Annuler</button>
+                <button mat-button cdkFocusInitial [mat-dialog-close]="true" (click)="updateMessage(message.id)">OK</button>
+            </div>
+        </ng-template>
+
     </div>
 </div>
 

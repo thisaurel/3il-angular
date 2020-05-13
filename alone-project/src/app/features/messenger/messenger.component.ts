@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { map } from "rxjs/operators";
 import { User } from 'src/app/interfaces/user';
 import { Message } from 'src/app/interfaces/message';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -21,6 +22,7 @@ export class MessengerComponent implements OnInit, AfterViewChecked {
   public whoAmI: User;
   public id: number;
   public uploadedPicture: string = '';
+  public updateMessageSwitch: boolean = false;
 
   messageForm = new FormGroup({
     messageInput: new FormControl('', [
@@ -28,10 +30,15 @@ export class MessengerComponent implements OnInit, AfterViewChecked {
     ]),
   });
 
+  updateGroup = new FormGroup({
+    inputUpdateMessage: new FormControl()
+  });
+
   constructor(
     private authService: AuthService,
     private messageService: MessagesService,
     route: ActivatedRoute,
+    public dialog: MatDialog,
   ) {
     const id: Observable<string> = route.params.pipe(map(p => p.id));
     id.subscribe((routeId) => {
@@ -65,14 +72,29 @@ export class MessengerComponent implements OnInit, AfterViewChecked {
     const receiverId = this.id;
     const msg = message;
     const pic = this.uploadedPicture;
-
     if (this.messageService.add(msg, pic,emitterId, receiverId)) {
       this.messagesList = this.messageService.getMessagesForUser(this.id);
       this.messageForm.reset();
     } else {
       alert('Erreur lors de l\'envoie');
     }
+  }
 
+  public openModal(template: any): void {
+    this.dialog.open(template, {
+        width: '500px',
+    });
+  }
+
+  public updateMessage(id: number): void {
+    if (typeof this.updateGroup.value.inputUpdateMessage === 'string') {
+      if (this.messageService.updateMessage(id, this.updateGroup.value.inputUpdateMessage)) {
+        this.messagesList = this.messageService.getMessagesForUser(this.id);
+        alert('Message mis à jour !');
+      } else {
+        alert('Erreur lors de la mise à jour du message');
+      }
+    }
   }
 
   onSubmit(): void {
