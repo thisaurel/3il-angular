@@ -26,11 +26,18 @@ export class UserComponent implements OnInit {
     id.subscribe((routeId) => {
       this.user = this.authService.getUserById(+routeId);
       this.mapsURL = `https://maps.google.com/maps?q=${this.user.localisation.lat},${this.user.localisation.long}&hl=es&z=14&output=embed`;
-    
     });
   }
 
   ngOnInit() {
+
+  }
+
+  public get age(): number {
+    let birthDate = new Date(this.user.birthDate);
+    let ageDiff = Date.now() - birthDate.getTime();
+    let ageDate = new Date(ageDiff);
+    return Math.abs(ageDate.getUTCFullYear() - 1970);
   }
 
 }
