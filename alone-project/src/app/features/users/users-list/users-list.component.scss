@@ -5,6 +5,17 @@
 
 .user-info {
     margin-left: 70px;
+    .last-message {
+        font-weight: 500;
+        margin-top: 5px;
+        margin-bottom: 0px;
+    }
+    .date {
+        color: grey;
+        font-size: 14px;
+        font-style: italic;
+        margin-top: 0px;
+    }
 }
 
 .item {

@@ -5,8 +5,8 @@
         <div class="user-info">
             <div mat-line>{{user.firstName}} {{user.lastName}}</div>
             <div mat-line>
-                {{ messageService.getLastMessagePerUser(user.id) != null ? messageService.getLastMessagePerUser(user.id).content : 'Aucun message' }}
-                {{ messageService.getLastMessagePerUser(user.id) != null ? ' envoyé à ' + messageService.getLastMessagePerUser(user.id).datetime : '' }}
+                <p class="last-message">{{ messageService.getLastMessagePerUser(user.id) != null ? messageService.getLastMessagePerUser(user.id).content : 'Aucun message' }}</p>
+                <p class="date"> {{ messageService.getLastMessagePerUser(user.id) != null ? ' envoyé le ' + (messageService.getLastMessagePerUser(user.id).datetime | date: 'dd/MM/yyyy à HH:mm' ) : '' }}</p>
             </div>
         </div>
     </mat-list-item>
