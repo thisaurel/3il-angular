@@ -18,15 +18,6 @@ export class AuthService {
     console.log(this.data.users);
   }
 
-  public get all(): User[] {
-    return this.data.users;
-  }
-
-  public getUserById(id: number): User {
-    const user = this.data.users.filter((u) => u.id === id);
-    if (user) return user[0];
-  }
-
   public get allWithoutMe(): User[] {
     return this.data.users.filter((u) => u != this.connectedUser);
   }

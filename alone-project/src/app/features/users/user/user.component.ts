@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/interfaces/user';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MessagesService } from 'src/app/services/messages/messages.service';
+import { UsersService } from 'src/app/services/users/users.service';
 
 @Component({
   selector: 'app-user',
@@ -24,10 +25,11 @@ export class UserComponent implements OnInit {
     private messageService: MessagesService,
     route: ActivatedRoute,
     public sanitizer: DomSanitizer,
+    public usersService: UsersService,
   ) {
     const id: Observable<string> = route.params.pipe(map(p => p.id));
     id.subscribe((routeId) => {
-      this.user = this.authService.getUserById(+routeId);
+      this.user = this.usersService.getUserById(+routeId);
       this.mapsURL = `https://maps.google.com/maps?q=${this.user.localisation.lat},${this.user.localisation.long}&hl=es&z=14&output=embed`;
     });
   }

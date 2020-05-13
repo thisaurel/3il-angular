@@ -8,6 +8,7 @@ import { User } from 'src/app/interfaces/user';
 import { Message } from 'src/app/interfaces/message';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UsersService } from 'src/app/services/users/users.service';
 
 @Component({
   selector: 'app-messenger',
@@ -39,12 +40,13 @@ export class MessengerComponent implements OnInit, AfterViewChecked {
     private messageService: MessagesService,
     route: ActivatedRoute,
     public dialog: MatDialog,
+    public usersService: UsersService,
   ) {
     const id: Observable<string> = route.params.pipe(map(p => p.id));
     id.subscribe((routeId) => {
       this.id = +routeId;
       this.messagesList = this.messageService.getMessagesForUser(this.id);
-      this.user = this.authService.getUserById(this.id);
+      this.user = this.usersService.getUserById(this.id);
     });
     this.whoAmI = this.authService.userConnected;
   }
